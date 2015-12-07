@@ -1,0 +1,145 @@
+
+<p></p>
+<div class="row">
+  <div class="col-sm-8  col-md-offset-2" >
+    <div class="card" >      
+      <div class="row">
+        <div class="col-sm-5 col-md-offset-1" >
+          <br>
+          <br>
+          <div class="btn-group">
+              
+            <%= btn_type = "btn-primary"
+                if @breakfasttoggle == "none"
+                  btn_type = ""
+                end
+                tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Breakfast</button>' 
+                link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleBreakfast", :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
+              
+ 
+              
+            <%= btn_type = "btn-primary"
+                if @lunchtoggle == "none"
+                  btn_type = ""
+                end
+                tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Lunch</button>' 
+                link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleLunch", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
+            <%=  btn_type = "btn-primary"
+                if @dinertoggle == "none"
+                  btn_type = ""
+                end
+                tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Dinner</button>' 
+
+                link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleDinner", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
+            <%= btn_type = "btn-primary"
+                if @drinktoggle == "none"
+                  btn_type = ""
+                end
+                tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Drinks</button>' 
+ 
+              link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleDrinks", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
+
+          </div>
+        <br>
+        <br>        
+        <ul class="list-group">
+            <%  @section = @Menuitems.where("(section = ? ) OR (section = ? ) OR (section = ? ) OR (section = ? )" , @breakfasttoggle, @lunchtoggle,@dinertoggle,@drinktoggle)              
+
+                if @sortstatus == "pricedesc"
+                  @section = @section.order("price DESC")
+                else
+                  if @sortstatus == "priceasc"
+                    @section = @section.order("price ASC")
+                  else
+                    if @sortstatus == "namedesc"
+                      @section = @section.order("name DESC")
+                    else
+                      if @sortstatus == "nameasc"
+                        @section = @section.order("name ASC")
+                      end
+                    end
+                  end
+                end
+              %>
+
+
+            <%=                
+              tmp_icon=fa_icon "navicon"
+              if @sortstatus == "nameasc"
+                tmp_icon=fa_icon "sort-alpha-asc"                
+              else 
+                if @sortstatus == "namedesc"
+                  tmp_icon=fa_icon "sort-alpha-desc"
+                end
+              end
+              tmp_string='<button type="button" class="btn">'+ tmp_icon + '</button>'
+              tmp_sorttype = ""
+              if @sortstatus=="nameasc"
+                tmp_sorttype="namedesc"
+              else
+                tmp_sorttype="nameasc"
+              end
+              link_to(tmp_string.html_safe,:controller => "menu", :action =>"SortMenuItem", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => tmp_sorttype )%>
+            <%=
+              tmp_icon=fa_icon "navicon"
+              if @sortstatus == "priceasc"
+                tmp_icon=fa_icon "sort-amount-asc"                
+              else 
+                if @sortstatus == "pricedesc"
+                  tmp_icon=fa_icon "sort-amount-desc"
+                end
+              end
+
+              tmp_string='<button type="button" class="btn pull-right">'+ tmp_icon + '</button>'               
+              tmp_sorttype = ""
+              if @sortstatus=="priceasc"
+                tmp_sorttype="pricedesc"
+              else
+                tmp_sorttype="priceasc"
+              end
+              link_to(tmp_string.html_safe,:controller => "menu", :action =>"SortMenuItem", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => tmp_sorttype )%>
+
+
+            
+            <%@section.each do |menuitem|%>
+                <%
+                @isactive = ""
+                if menuitem.id.to_s == params[:menuitemid].to_s
+                  @isactive = " active "
+                end
+              
+                @selectionstate = "&breakfasttoggle="+@breakfasttoggle+"&dinertoggle="+@dinertoggle+"&drinktoggle="+@drinktoggle+"&lunchtoggle="+@lunchtoggle+"&sort="+@sortstatus
+                
+                %>
+
+                <a href=<%= '/menu/index?menuitemid='+menuitem.id.to_s+@selectionstate %> class="list-group-item <%=  @isactive %> "><span class="label label-default label-pill pull-right"><%= menuitem.price%>K VND</span><%= menuitem.name %></a>
+            <%end%>
+                
+        </ul>
+        <br>
+      </div>
+      <div class="col-sm-4" >
+          <p></p>
+          <%= if params[:menuitemid]
+             menuitem = @Menuitems.find(params[:menuitemid])
+            image_tag(menuitem.image)                  
+          end%>
+          <p></p>
+
+          
+          <%= if params[:menuitemid]
+            tmp_string='<button type="button" class="btn btn-danger">Order</button>' 
+            link_to(tmp_string.html_safe,:controller => "order", :action =>"create_order", :menuitemid => params[:menuitemid])
+          end%>
+          
+        <br>
+        <br>
+        <br>
+        <br>
+          
+      </div>        
+        
+    </div>
+  </div>
+</div>
+

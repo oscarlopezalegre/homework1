@@ -1,0 +1,35 @@
+<p></p>
+<div class="row">
+  <div class="col-sm-8  col-md-offset-2" >
+    <div class="card " >      
+      <div class="row">
+
+          <div class="col-sm-8  col-md-offset-1" >
+           <br>
+
+            <h1>Thanks for ordering:</h1>          
+            <h3><%= @menuitem.name %></h3>          
+            <h1>Total cost:</h1>          
+            <h3><%= @menuitem.price + 20 %>K VND</h3>
+            <h1>Delivery name:</h1>          
+            <h3><%= @order.name%></h3>
+            <h1>Delivery address:</h1>          
+            <h3><%= @order.address%></h3>
+            <h1>Created:</h1>          
+            <h3><%= @order.created_at.strftime("%d %b. %Y") %></h3>
+
+
+          </div>
+          <div class="col-sm-4  col-md-offset-1" >
+            <%=  link_to('Back',"/welcome/index", :class => 'btn btn-danger')%>
+            
+            
+            <br>
+            <br>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+

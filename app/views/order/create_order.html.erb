@@ -1,0 +1,63 @@
+<p></p>
+<div class="row">
+  <div class="col-sm-8  col-md-offset-2" >
+    <div class="card " >      
+      <div class="row">
+
+          <div class="col-sm-8  col-md-offset-1" >
+            <h1>Delivery information</h1>          
+          </div>
+          
+          <div class="col-sm-4  col-md-offset-1" >
+            
+            <br>
+                <%= form_tag("/save_order/thank_you", method: "get") do %>
+
+            <div class="row">
+              <div class="col-sm-2  col-md-offset-1" >
+                <%= label_tag(:name, "Name:") %>
+              </div>
+              <div class="col-sm-2  col-md-offset-1" >                
+            <%= text_field_tag(:name) %> <br>
+              </div>
+            </div>
+            
+
+              <div class="row">
+              <div class="col-sm-2  col-md-offset-1" >
+                <%= label_tag(:phone, "Phone:") %>
+              </div>
+              <div class="col-sm-2  col-md-offset-1" >                          
+                <%= text_field_tag(:phone) %> <br>
+              </div>
+            </div>
+
+              <div class="row">
+              <div class="col-sm-2  col-md-offset-1" >
+
+            
+                              <%= label_tag(:address, "Address:") %>
+              </div>
+              <div class="col-sm-2  col-md-offset-1" >                          
+
+                  
+                  
+            <%= text_field_tag(:address) %><br>
+                          </div>
+            </div>
+
+            <input name="menuitemid" type="hidden" value="<%= params[:menuitemid] %>">
+            <%= submit_tag("Create", :class => "btn btn-primary") %>
+            <% end %>
+            <br>
+            
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+
+
+
+
+
