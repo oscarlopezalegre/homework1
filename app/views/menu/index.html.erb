@@ -126,7 +126,7 @@
           <%= if params[:menuitemid]
              menuitem = @Menuitems.find(params[:menuitemid])
             Rails.application.config.assets.prefix
-            image_tag image_url(menuitem.image)
+            image_tag asset_url(menuitem.image)
           end%>
           <p></p>
 
