@@ -75,7 +75,7 @@
                   tmp_icon=fa_icon "sort-alpha-desc"
                 end
               end
-              tmp_string='<button type="button" class="btn">'+ tmp_icon + '</button>'
+              tmp_string='<button type="button" class="btn  btn-primary-outline">'+ tmp_icon + '</button>'
               tmp_sorttype = ""
               if @sortstatus=="nameasc"
                 tmp_sorttype="namedesc"
@@ -93,7 +93,7 @@
                 end
               end
 
-              tmp_string='<button type="button" class="btn pull-right">'+ tmp_icon + '</button>'               
+              tmp_string='<button type="button" class="btn btn-primary-outline  pull-right">'+ tmp_icon + '</button>'               
               tmp_sorttype = ""
               if @sortstatus=="priceasc"
                 tmp_sorttype="pricedesc"
