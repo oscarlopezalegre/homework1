@@ -1,4 +1,7 @@
 
+<head>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.5.0/css/font-awesome.min.css">
+</head>
 <p></p>
 <div class="row">
   <div class="col-sm-8  col-md-offset-2" >
@@ -122,7 +125,8 @@
           <p></p>
           <%= if params[:menuitemid]
              menuitem = @Menuitems.find(params[:menuitemid])
-            image_tag(menuitem.image)                  
+            Rails.application.config.assets.prefix
+            image_path (menuitem.image)
           end%>
           <p></p>
 

@@ -5,13 +5,11 @@
         <group>
             <file>file:/C:/Sites/homework1/app/views/order/create_order.html.erb</file>
             <file>file:/C:/Sites/homework1/app/views/menu/index.html.erb</file>
-            <file>file:/C:/Sites/homework1/app/views/save_order/thank_you.html.erb</file>
-            <file>file:/C:/Sites/homework1/app/views/contact/index.html.erb</file>
-            <file>file:/C:/Sites/homework1/config/database.yml</file>
             <file>file:/C:/Sites/homework1/config/routes.rb</file>
             <file>file:/C:/Sites/homework1/app/controllers/save_order_controller.rb</file>
-            <file>file:/C:/Sites/homework1/Gemfile</file>
+            <file>file:/C:/Sites/homework1/config/application.rb</file>
             <file>file:/C:/Sites/homework1/app/views/welcome/index.html.erb</file>
+            <file>file:/C:/Sites/homework1/db/schema.rb</file>
         </group>
     </open-files>
 </project-private>
