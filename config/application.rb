@@ -20,8 +20,8 @@ module Homework1
 
     
     
-    config.serve_static_assets = true
-    config.assets.enabled = true
+    
+    config.assets.digest = true
     
     
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
