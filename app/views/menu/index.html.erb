@@ -14,7 +14,7 @@
               
             <%= btn_type = "btn-primary"
                 if @breakfasttoggle == "none"
-                  btn_type = ""
+                  btn_type = "btn-primary-outline"
                 end
                 tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Breakfast</button>' 
                 link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleBreakfast", :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
@@ -23,20 +23,20 @@
               
             <%= btn_type = "btn-primary"
                 if @lunchtoggle == "none"
-                  btn_type = ""
+                  btn_type = "btn-primary-outline"
                 end
                 tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Lunch</button>' 
                 link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleLunch", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
             <%=  btn_type = "btn-primary"
                 if @dinertoggle == "none"
-                  btn_type = ""
+                  btn_type = "btn-primary-outline"
                 end
                 tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Dinner</button>' 
 
                 link_to(tmp_string.html_safe,:controller => "menu", :action =>"ToggleDinner", :class => 'btn btn-info', :breakfasttoggle => @breakfasttoggle,:lunchtoggle => @lunchtoggle,:dinertoggle => @dinertoggle,:drinktoggle => @drinktoggle,:menuitemid => params[:menuitemid], :sort => @sortstatus)%>
             <%= btn_type = "btn-primary"
                 if @drinktoggle == "none"
-                  btn_type = ""
+                  btn_type = "btn-primary-outline"
                 end
                 tmp_string='<button type="button" class="btn btn-sm '+btn_type+'">Drinks</button>' 
  
@@ -125,7 +125,6 @@
           <p></p>
           <%= if params[:menuitemid]
              menuitem = @Menuitems.find(params[:menuitemid])
-            Rails.application.config.assets.prefix
             image_tag asset_url(menuitem.image)
           end%>
           <p></p>
