@@ -17,6 +17,9 @@ module Homework1
     # Run "rake -D time" for a list of tasks for finding time zone names. Default is UTC.
     # config.time_zone = 'Central Time (US & Canada)'
 
+    
+    config.assets.paths << Rails.root.join('vendor', 'assets')
+    
     config.action_dispatch.x_sendfile_header = nil
 
     config.assets.digest = true
